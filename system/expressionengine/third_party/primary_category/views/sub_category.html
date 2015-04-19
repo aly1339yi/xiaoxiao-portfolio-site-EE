@@ -1,0 +1,68 @@
+
+<?php
+if(isset($categories[$group_id])) :
+
+	 foreach($categories[$group_id] AS $category) :
+
+		if($category['parent_id'] == $current_category) :
+
+
+			//handle the sub children here, so we have it available later when we want to do some logic for parent/non-parents
+			//but output hold the output as a var, and output it later
+
+			// now handle the potential children of this category
+			$data['current_category'] = $category['category_id'];
+			$data['group_id'] = $group_id;
+			$data['depth'] = $depth+1;
+
+			$checked = ( in_array( $category['category_id'], $selected_cats ) === TRUE ) ? 'checked="checked"' : '';
+
+			$children = trim($this->view('sub_category.html',$data, TRUE));
+
+			?>
+
+
+			<div class="cat_drag box" id="cat_<?php echo $category['category_id']; ?>" style="padding-left : <?php echo $depth * 3; ?>8px">
+				
+				<?php if(in_array($group_id,$group_settings)) : ;?>
+				
+				<a href="" title="Swap primary category with this category" class="pc_swap invisible">
+						<img src="<?=$theme_path;?>images/arrow_trade.png" width="16" height="16" />
+				</a>
+				
+				<a href="" title="Set as primary category" class="pc_arrow" <?php if( in_array($group_id, $primary_cat_group_ids) ) :?>style="display: none"<?php endif; ?>>
+					<img src="<?=$theme_path;?>images/add.png" width="16" height="16" />
+				</a>
+
+				<?php endif;
+
+				if(!empty($children)) : ?>
+
+					<a href="" title="<?php ee()->lang->line('collapse'); ?>" class="pc_accordian">
+						<img src="<?=PATH_CP_GBL_IMG;?>collapse.gif" border="0" width="10" height="10" alt="Collapse" />
+					</a>
+
+				<?php endif; ?>
+
+				<input class='checkbox' type='checkbox' name='category[]' id="category_<?=$category['category_id'];?>" value='<?=$category['category_id'];?>' <?=$checked;?> />
+				<label for="category_<?=$category['category_id'];?>">
+					<?=$category['category_name'];?> <small class="cat_group" style="display: none; font-weight: normal"> (<?php echo($category_groups[$group_id]); ?>)</small>
+				</label>
+				
+			</div>
+
+			<?php if(!empty($children)) : ?>
+
+			<div class="sub_box" id="sub_<?=$category['category_id']; ?>" style="display : block">
+
+				<?=$children;?>
+
+			</div>
+
+			<?php endif ;
+
+		endif;
+
+	endforeach;
+
+endif; ?>

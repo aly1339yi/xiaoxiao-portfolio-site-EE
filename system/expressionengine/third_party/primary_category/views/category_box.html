@@ -1,0 +1,160 @@
+<table style="width:100%" >
+	<tr>
+		<td>
+
+	<div class="prime_box">
+
+		<h3 class="title"><?=ee()->lang->line('primary_category_module_name');?></h3>
+		<p><?=ee()->lang->line('pc_instructions');?></p>
+
+		<div id="prime_cat_box" class="cat_box">
+			<?php $primary_cat_group_ids = array(); ?>
+			<?php if(is_array($primary_cat) AND isset($primary_cat['id'])) : ?>
+				<div id="prime_cat_<?=$primary_cat['id'];?>" class="cat_drag box primary">
+					<a href="" title="Delete the primary category" class="pc_delete">
+						<img src="<?=$theme_path;?>images/delete.png" width="16" height="16"/>
+					</a>
+					<label><?=$primary_cat['cat_name'];?></label>
+				</div>
+			<?php elseif(is_array($primary_cat) && ! isset($primary_cat['id'])) : ?>
+				<?php $primary_cat_pipe_delimited = ''; ?>
+				<?php foreach($primary_cat as $key => $pc) :?>
+					<?php $primary_cat_pipe_delimited = $primary_cat_pipe_delimited . $pc['id']. '|'; ?>
+					<?php $primary_cat_group_ids[] = $pc['cat_group_id']; ?>
+					<div id="prime_cat_<?=$pc['id'];?>" class="cat_drag box primary" data-pc_id="<?=$pc['id']?>" data-pc_grp_id="sub_<?=$pc['cat_group_id']?>_grp">
+						<a href="" title="Delete the primary category" class="pc_delete">
+							<img src="<?=$theme_path;?>images/delete.png" width="16" height="16"/>
+						</a>
+						<label><?=$pc['cat_name'];?> <small class="cat_group" style="font-weight: normal"> (<?php echo($pc['cat_group_name']); ?>)</small></label>
+					</div>
+				<?php endforeach; ?>
+			<?php endif; ?>
+		</div>
+
+		<?php
+			if(!isset($settings['remember_primary_disabled'])) :
+
+				$prim_cookie = '';
+				if(isset($cookies['remember_primary_cat'][$channel_id])
+					AND $cookies['remember_primary_cat'][$channel_id] == 'y') :
+					 $prim_cookie = ' checked="checked"';
+				endif;	?>
+		<div>
+			<label for="pc_remember_primary_category_<?=$channel_id;?>">
+				<input type="checkbox" name="pc_remember_primary_category_<?=$channel_id;?>" value="y" <?=$prim_cookie;?> id="pc_remember_primary_category_<?=$channel_id;?>"/>
+				<?php echo ee()->lang->line('remember_primary_category');?>
+			</label>
+		</div>
+
+
+		<?php
+		 	endif;
+
+			if(!isset($settings['remember_checkboxes_disabled'])) :
+				foreach($categories AS $group_id => $category_group) :
+
+					$cookie_checked = '';
+					if(isset($cookies['remember_other_categories'][$channel_id][$group_id])
+						AND $cookies['remember_other_categories'][$channel_id][$group_id] == 'y') :
+						 $cookie_checked = ' checked="checked"';
+					endif;
+				?>
+		<div>
+			<label for="pc_remember_other_categories_<?=$channel_id;?>_<?=$group_id;?>">
+				<input type="checkbox" name="pc_remember_other_categories_<?=$channel_id;?>_<?=$group_id;?>" value="y" <?=$cookie_checked;?> id="pc_remember_other_categories_<?=$channel_id;?>_<?=$group_id;?>"/>
+				<?php echo  str_replace('%group_name', $category_groups[$group_id], ee()->lang->line('remember_other_categories'));?>
+			</label>
+		</div>
+
+		<?php endforeach;
+		 	endif;
+		?>
+	</div>
+
+	<div class="cat_box left_cat_box" style="width:48%; <?php if(isset($settings['disable_category_list_overflow'])) :?>height: 100%; max-height: 100%;<?php endif ?>">
+
+		<?php foreach($categories AS $group_id => $category_group) : ?>
+
+			<div class="pc_divider" id="cat_<?php echo($group_id); ?>_grp" >
+				<a href="" title="<?php ee()->lang->line('collapse'); ?>" class="pc_accordian">
+					<span class="collapse"><img src="<?=PATH_CP_GBL_IMG;?>collapse.gif" border="0" width="10" height="10" alt="Collapse" /></span>
+				</a>
+				<?php echo($category_groups[$group_id]); ?>
+			</div>
+
+			<div class="cat_group" id="sub_<?php echo($group_id); ?>_grp">
+			<?php foreach($category_group AS $category_id => $category_details) : ?>
+
+			<?php if($category_details['parent_id']=='0') :
+
+					//handle the sub children here, so we have it available later when we want to do some logic for parent/non-parents
+					//but output hold the output as a var, and output it later
+
+					// now handle the potential children of this category
+					$data['current_category'] = $category_details['category_id'];
+					$data['group_id'] = $group_id;
+					$data['depth'] = 1;
+					$data['primary_cat_group_ids'] = $primary_cat_group_ids;
+
+					$checked = ( in_array( $category_details['category_id'], $selected_cats ) === TRUE ) ? 'checked="checked"' : '';
+					$children = trim($this->view('sub_category.html',$data, TRUE));
+				?>
+				<div class="cat_drag box" id="cat_<?php echo($category_details['category_id']); ?>">
+
+					<?php if(in_array($group_id,$group_settings)) :?>
+					
+					<a href="" title="Swap primary category with this category" class="pc_swap invisible">
+						<img src="<?=$theme_path;?>images/arrow_trade.png" width="16" height="16" />
+					</a>
+
+					<a href="" title="Set as primary category" class="pc_arrow" <?php if( in_array($group_id, $primary_cat_group_ids) ) :?>style="display: none"<?php endif; ?>>
+						<img src="<?=$theme_path;?>images/add.png" width="16" height="16" />
+					</a>
+					<?php endif;
+					 //we only want to show the collapse/show option when we have children
+
+					if(!empty($children)) : ?>
+
+					<a href="" title="<?php ee()->lang->line('collapse'); ?>" class="pc_accordian">
+						<img src="<?=PATH_CP_GBL_IMG;?>collapse.gif" border="0" width="10" height="10" alt="Collapse" />
+					</a>
+
+					<?php endif; ?>
+
+					<input class='checkbox' type='checkbox' name='category[]' id="category_<?php echo($category_details['category_id']); ?>" value='<?php echo($category_details['category_id']); ?>' <?=$checked;?>/>
+					<label for="category_<?php echo($category_details['category_id']); ?>">
+						<?=$category_details['category_name'];?> <small class="cat_group" style="display: none; font-weight: normal"> (<?php echo($category_groups[$group_id]); ?>)</small>
+					</label>
+				</div>
+
+				<?php if(!empty($children)) : ?>
+
+					<div class="sub_box" id="sub_<?=$category_details['category_id']; ?>" style="display : block">
+
+						<?=$children;?>
+					</div>
+
+				<?php endif ;
+
+				endif;
+
+			 endforeach; ?>
+
+		</div>
+
+		<?php endforeach; ?>
+
+	</div>
+
+	<?php if(is_array($primary_cat) AND isset($primary_cat['id'])) : ?>
+		<input type="hidden" id="pc_field" name="primary_category" value="<?=$primary_cat['id'];?>" />
+	<?php elseif(isset($primary_cat_pipe_delimited)) : ?>
+		<input type="hidden" id="pc_field" name="primary_category" value="<?=$primary_cat_pipe_delimited;?>" />
+	<?php else : ?>
+		<input type="hidden" id="pc_field" name="primary_category" value="" />
+	<?php endif; ?>
+
+	<div id="pc_holder"></div>
+</td>
+</tr>
+</table>

@@ -1,0 +1,5 @@
+#sub_hold_field_category .primary {	background: #ffffff url('<?=$theme_path;?>images/star.png') no-repeat 5px 40%; }
+
+#sub_hold_field_category a.pc_delete span { display : block; background : transparent url('<?=$theme_path;?>images/delete.png') no-repeat; height : 16px; width : 16px;}
+#sub_hold_field_category a.pc_accordian span.expand { display : block; background : transparent url('<?=PATH_CP_GBL_IMG;?>expand.gif') no-repeat; height : 10px; width : 10px; float : left; text-indent : -999em; margin : 3px 3px 3px 0;}
+#sub_hold_field_category a.pc_accordian span.collapse { display : block; background : transparent url('<?=PATH_CP_GBL_IMG;?>collapse.gif') no-repeat; height : 10px; width : 10px; float : left; text-indent : -999em; margin : 3px 3px 3px 0;}

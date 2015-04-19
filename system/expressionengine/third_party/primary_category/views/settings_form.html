@@ -1,0 +1,191 @@
+
+<!-- #form -->
+<?php echo form_open('C=addons_extensions'.AMP.'M=save_extension_settings'.AMP.'file=primary_category');?>
+	
+	<div class='hidden'>
+		<input type='hidden' name='name' value='primary_category' />
+		<input type="hidden" name="XID" value="<?=$XID_SECURE_HASH?>" />
+	</div> 
+	
+	
+	<h2><?=ee()->lang->line('general_settings');?></h2>
+		
+	<?php
+		$checkbox_primary = "";
+		$checkbox_categories = "";
+		$checkbox_disable_overflow = "";
+		
+		if(isset($settings[ee()->config->item('site_id')]['remember_primary_disabled']) AND $settings[ee()->config->item('site_id')]['remember_primary_disabled'] == 'y' )
+		{
+			$checkbox_primary = ' checked="checked" ';
+		}
+		
+		if(isset($settings[ee()->config->item('site_id')]['remember_checkboxes_disabled']) AND $settings[ee()->config->item('site_id')]['remember_checkboxes_disabled'] == 'y' )
+		{
+			$checkbox_categories = ' checked="checked" ';
+		}
+
+		if(isset($settings[ee()->config->item('site_id')]['disable_category_list_overflow']) AND $settings[ee()->config->item('site_id')]['disable_category_list_overflow'] == 'y' )
+		{
+			$checkbox_disable_overflow = ' checked="checked" ';
+		}
+		
+	?>
+	<table cellspacing="0" cellpadding="0" border="0" class="mainTable" style="width: 100%; float:left;">
+		<tbody>
+			<tr>
+				<td style="width:20%; border : none !important; padding-top : 15px;" valign="top">&nbsp;</td>
+				<td style="width: 30%; border : none !important;" valign="top">
+					<table style="width:100%" cellspacing="0" cellpadding="0" border="0">
+						<thead>
+							<tr>
+								<th class="primary_cat_settings"><?=ee()->lang->line('settings');?> &nbsp;(<?php echo(ee()->config->item('site_label')); ?>)</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="odd">
+								<td valign="top" style="border-top:1px solid #D0D7DF !important;">
+									<label for="remember_primary_disabled">
+										<input type="checkbox" name="remember_primary_disabled" value="y" id="remember_primary_disabled" <?=$checkbox_primary;?>/>
+										<span style="padding-left:6px; font-weight:normal;"><?php echo ee()->lang->line('remember_primary_disabled');?></span>
+									</span>
+								</td>
+							</tr>
+							<tr class="even">		
+								<td valign="top">
+									<label for="remember_checkboxes_disabled">
+										<input type="checkbox" name="remember_checkboxes_disabled" value="y" id="remember_checkboxes_disabled" <?=$checkbox_categories;?>/>
+										<span style="padding-left:6px; font-weight:normal;"><?php echo ee()->lang->line('remember_checkboxes_disabled');?></span>
+									</span>
+								</td>
+							</tr>
+							<tr class="even">		
+								<td valign="top">
+									<label for="disable_category_list_overflow">
+										<input type="checkbox" name="disable_category_list_overflow" value="y" id="disable_category_list_overflow" <?=$checkbox_disable_overflow;?>/>
+										<span style="padding-left:6px; font-weight:normal;"><?php echo ee()->lang->line('disable_category_list_overflow');?></span>
+									</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h2><?=ee()->lang->line('channel_settings');?></h2>
+	<table cellspacing="0" cellpadding="0" border="0" class="mainTable" style="width: 100%; float:left;">
+		<tbody>
+			<tr>
+				<td style="width:20%; border : none !important; padding-top : 15px;" valign="top"><?=ee()->lang->line('force_primary_cat_channels');?></td>
+				<td style="width: 30%; border : none !important;" valign="top">
+					<table style="width:100%" cellspacing="0" cellpadding="0" border="0">
+						<thead>
+							<tr>
+								<th class="primary_cat_settings"><?=ee()->lang->line('channels');?> &nbsp;(<?php echo(ee()->config->item('site_label')); ?>)</th>
+							</tr>
+						</thead>
+						<tbody>
+							
+						<?php foreach($channels as $channel_id => $channel_label) : ?>
+						
+						<?php
+							
+							$class = ($class=='even' ? 'odd' : 'even');
+							
+							$checked = '';
+							// Check if the current weblog is already selected.
+							if (isset($settings[ee()->config->item('site_id')]['channels']) && in_array($channel_id,$settings[ee()->config->item('site_id')]['channels']))
+							{
+								$checked = 'checked="checked"';
+							}
+							else
+							{
+								$checked = '';
+							}						
+						?>
+						<tr class="<?=$class;?>">
+							<td>
+								<label for="channel_label_<?=$channel_id;?>">
+									<input name="channels[]" type="checkbox" id="channel_label_<?=$channel_id;?>" value="<?php echo($channel_id); ?>" <?php echo($checked); ?>>
+									<span style="padding-left:6px; font-weight:normal;"><?php echo($channel_label); ?></span>
+								</label>
+							</td>
+						</tr>
+						
+						<?php endforeach;
+						//reset our class switch  
+						$class = 'even'; ?>
+						</tbody>
+					</table>
+					
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<table cellspacing="0" cellpadding="0" border="0" class="mainTable" style="width: 100%; float : left; ">
+		<tbody>
+			<tr>
+				
+				<td style="width: 20%; border : none !important; padding-top : 15px;" valign="top"><?php echo ee()->lang->line('which_category_groups');?></td>
+				
+				<td style="width: 30%; border : none !important;" valign="top">
+					
+					<table style="width : 100%" cellspacing="0" cellpadding="0" border="0">
+						<thead>
+							<tr>
+								<th class="primary_cat_settings"><?php echo ee()->lang->line('category_groups');?>&nbsp;(<?php echo(ee()->config->item('site_label')); ?>)</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+						<?php foreach($category_groups as $group_id => $group_name) : ?>
+						
+						<?php
+						
+							$class = ($class=='even' ? 'odd' : 'even');
+						
+							$checked = '';
+							// Check if the current weblog is already selected.
+							if (isset($settings[ee()->config->item('site_id')]['cat_groups']) && in_array($group_id,$settings[ee()->config->item('site_id')]['cat_groups']))
+							{
+								$checked = 'checked="checked"';
+							}
+							else
+							{
+								$checked = '';
+							}
+
+						?>
+							
+						<tr class="<?=$class;?>">
+							<td>
+								<label for="category_group_<?=$group_id;?>">
+									<input name="cat_groups[]" type="checkbox" id="category_group_<?=$group_id;?>" value="<?php echo($group_id); ?>" <?=$checked;?>>
+									<span style="padding-left:6px; font-weight:normal;"><?=$group_name;?></span>
+								</label>
+							</td>
+						</tr>
+						
+						<?php endforeach; ?>
+						
+						</tbody>
+						
+					</table>
+					
+				</td>
+						
+			</tr>
+		</tbody>
+	</table> 
+	<br style="clear:both;"/>
+	<div class='itemWrapperTop' > 
+		
+		<input  type='submit' class='submit' value='Submit'  /> 
+		
+	</div> 
+</form> 
+ 
+<!-- /#form -->

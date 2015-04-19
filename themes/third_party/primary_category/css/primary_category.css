@@ -1,0 +1,45 @@
+#sub_hold_field_category .cat_box {	border-radius : 3px; border: 1px solid #AFBBCF;	_height: expression( this.scrollHeight > 199 ? "200px" : "auto" ); overflow: auto; padding: 0;}
+#sub_hold_field_category .left_cat_box { height: 250px; max-height: 250px; }
+#sub_hold_field_category .cat_box a { color: #333; }
+#sub_hold_field_category .box {	height: 20px; line-height: 20px; margin: 0;	padding: 3px 5px; vertical-align: middle; background-color : #ffffff; border-bottom: 1px solid #dbe0e6; }
+#sub_hold_field_category .box:hover { background-color : #f3f7f9; }
+#sub_hold_field_category .box label { display: inline; font-weight: bold !important; /* Fighing EE's global font-weight: normal !important; */ }
+#sub_hold_field_category input { margin-right: 5px; padding: 0;}
+#sub_hold_field_category .primary {	padding: 4px 5px 4px 25px !important;}
+#sub_hold_field_category .prime_box { float: right;	width: 48%; }
+#sub_hold_field_category .pc_divider { background: #d0dbe2;	border-bottom: 1px solid #afbbcf; font-weight: bold; margin: 0; padding: 4px 5px; }
+#sub_hold_field_category .sub_box { display : none; }
+#sub_hold_field_category .cat_box a { text-decoration : none; color : #5F6C74;}
+#sub_hold_field_category .cat_box label { font-size : 1em; color : #5F6C74;}
+#sub_hold_field_category .prime_box label.title { font-size : 1.2em; }
+#sub_hold_field_category .prime_box h3.title { margin-left: 0;}
+#sub_hold_field_category .prime_box p { margin : 10px 0;}
+#prime_cat_box { min-height: 25px; background-color : #fff; border : 1px solid #B6C0C2; margin-bottom: 10px ; border-radius : 3px 3px 3px 3px; }
+#sub_hold_field_category #prime_cat_box { padding: 0; }
+#sub_hold_field_category a.pc_arrow img, a.pc_delete img { border: none;}
+#sub_hold_field_category a.pc_arrow,
+#sub_hold_field_category a.pc_delete,
+#sub_hold_field_category a.pc_swap,
+#sub_hold_field_category div.pc_divider a.pc_accordian { float: right; }
+#sub_hold_field_category a.pc_arrow {
+	margin-top:4px;
+}
+#sub_hold_field_category .invisible {display: none;}
+#sub_hold_field_category a.pc_delete {
+	margin-top:2px;
+}
+/*
+ * Nice, iOS-like scrollbars block clicking of 
+ * right-hand-side buttons. The following
+ * forces the scrollbars to display and make
+ * clicking possible again
+ */
+#sub_hold_field_category .left_cat_box::-webkit-scrollbar {
+	-webkit-appearance: none;
+	width: 7px;
+}
+#sub_hold_field_category .left_cat_box::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	background-color: rgba(0,0,0,.5);
+	-webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
