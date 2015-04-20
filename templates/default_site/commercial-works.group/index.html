@@ -1,0 +1,25 @@
+{layout="inc/.layout"}
+<div class="commercial-works-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            {exp:channel:entries channel="commercial_works"}
+            <div class="col-sm-6 col-md-4 col">
+                <a href="/commercial-works/work-display/{url_title}">
+                <figure class="work-item">
+                    {thumnail}
+                    <img class="img-fullwidth" src="{url}" alt="{alt_text}">
+                    {/thumnail}
+                    <div class="meta">
+                        <div class="display-table">
+                            <div class="display-table-cell">
+                                <h3>{title}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </figure>
+                </a>
+            </div>
+            {/exp:channel:entries}
+        </div>
+    </div>
+</div>

@@ -28,6 +28,9 @@ class Channel_videos
 
 		$this->EE->load->library('channel_videos_helper');
 
+		$this->SSL = FALSE;
+		if (isset($_SERVER['HTTPS']) && ($_SERVER['HTTPS']) && strtolower($_SERVER['HTTPS']) != 'off') $this->SSL = TRUE;
+
 		return;
 	}
 
@@ -239,7 +242,25 @@ class Channel_videos
 				$vars[$prefix.'embed_code_hd'] = $VIMEO->render_player($vid->service_video_id, $module_settings['players']['vimeo'], TRUE);
 				$vars[$prefix.'url'] = 'https://vimeo.com/moogaloop.swf?clip_id='.$vid->service_video_id.'&server=vimeo.com&show_title=1&show_byline=1&show_portrait=0&color=00ADEF&fullscreen=1&'.$extra_params;
 				$vars[$prefix.'url_hd']		= 'https://vimeo.com/moogaloop.swf?clip_id='.$vid->service_video_id.'&server=vimeo.com&show_title=1&show_byline=1&show_portrait=0&color=00ADEF&fullscreen=1&'.$extra_params;
-				$vars[$prefix.'img_url_hd']	= preg_replace('#_100\.jpg$#', '_640.jpg', $vid->video_img_url);
+				$vars[$prefix.'img_url_hd'] = preg_replace('#_100(.*)?\.jpg$#', '_640.jpg', $vid->video_img_url);
+
+
+				/*
+				// It's a shame but this is the only way to really get correct URL's
+				$temp = $this->EE->channel_videos_helper->fetch_url_file('http://vimeo.com/api/v2/video/'.$vid->service_video_id.'.json');
+				if ($temp) {
+					$temp = $this->EE->channel_videos_helper->decode_json($temp);
+					if (isset($temp->thumbnail_large)) {
+						$vars[$prefix.'img_url_hd'] = $temp->thumbnail_large;
+					}
+				}
+				*/
+
+				// Vimeo does not have https certs on all their domains, so lets turn https off if not needed.
+				if (!$this->SSL) {
+					$vars[$prefix.'img_url'] = str_replace('https://', 'http://', $vars[$prefix.'img_url']);
+					$vars[$prefix.'img_url_hd'] = str_replace('https://', 'http://', $vars[$prefix.'img_url_hd']);
+				}
 			}
 
 			$temp = $this->EE->TMPL->parse_variables_row($this->EE->TMPL->tagdata, $vars);

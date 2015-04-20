@@ -305,8 +305,13 @@
                 Video.video_author = rdata.entry.author[0].name.$t;
                 Video.video_author_id = 0;
                 Video.video_duration = rdata.entry.media$group.yt$duration.seconds;
-                Video.video_views = rdata.entry.yt$statistics.viewCount;
-                Video.video_date = new Date(rdata.entry.published.$t).getTime() / 1e3;
+                Video.video_views = 0;
+                if (typeof rdata.entry != "undefined" && typeof rdata.entry.yt$statistics != "undefined" && typeof rdata.entry.yt$statistics.viewCount != "undefined") {
+                    Video.video_views = rdata.entry.yt$statistics.viewCount;
+                }
+                if (typeof rdata.entry != "undefined") {
+                    Video.video_date = new Date(rdata.entry.published.$t).getTime() / 1e3;
+                }
                 callback(Video, field_id);
             }
         });

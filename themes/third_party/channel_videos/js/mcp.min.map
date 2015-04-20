@@ -1,1 +1,1 @@
-{"version":3,"file":"themes/third_party/channel_videos/js/mcp.min.js","sources":["themes/third_party/channel_videos/src/js/mcp.js"],"names":["window","jQuery"],"mappings":"CAAE,WAEE,eAIFA,OAAQC","sourceRoot":"/"}
+{"version":3,"file":"mcp.min.js","sources":["..\\src\\js\\mcp.js"],"names":["window","jQuery"],"mappings":"CAAE,WAEE,cAIFA,OAAQC","sourcesContent":[";(function(global, $){\r\n    //es5 strict mode\r\n    \"use strict\";\r\n\r\n\r\n\r\n}(window, jQuery));\r\n\r\n// ----------------------------------------------------------------------\r\n"]}

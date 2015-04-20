@@ -1,0 +1,11 @@
+{layout="inc/.layout"}
+
+{exp:channel:entries channel="commercial_works"}
+    <h1>{title}</h1>
+ 
+    {exp:channel_videos:videos entry_id="{entry_id}"}
+        <h3>{video:title}</h3>
+        {video:embed_code_hd}
+    {/exp:channel_videos:videos}
+ 
+{/exp:channel:entries}

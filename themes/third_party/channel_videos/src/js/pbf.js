@@ -403,14 +403,18 @@
                 Video.video_author_id = 0;
                 Video.video_duration = rdata.entry.media$group.yt$duration.seconds;
 
+                Video.video_views = 0;
+
                 // When the video has no views, stats will not exists
-                if (rdata.entry.yt$statistics && rdata.entry.yt$statistics.viewCount) {
+                if (typeof rdata.entry != 'undefined'
+                    && typeof rdata.entry.yt$statistics != 'undefined'
+                    && typeof rdata.entry.yt$statistics.viewCount != 'undefined') {
                     Video.video_views = rdata.entry.yt$statistics.viewCount;
-                } else {
-                    Video.video_views = 0;
                 }
 
-                Video.video_date = (new Date(rdata.entry.published.$t).getTime()/1000);
+                if (typeof rdata.entry != 'undefined') {
+                    Video.video_date = (new Date(rdata.entry.published.$t).getTime()/1000);
+                }
 
                 callback(Video, field_id);
             }

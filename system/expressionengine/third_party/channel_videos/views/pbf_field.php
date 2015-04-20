@@ -8,7 +8,7 @@
 			<div class="block SubmitVideoUrl"><?=lang('cv:submit_url')?></div>
 		</th>
 	</tr>
-	<tr class="hidden SVWrapperTR">
+	<tr class="cvhidden SVWrapperTR">
 		<th colspan="99" class="SVWrapper">
 			<div class="cvsearch">
 				<?=lang('cv:keywords')?> <input rel="keywords" type="text" style="width:150px"/>&nbsp;&nbsp;
@@ -18,12 +18,12 @@
 			</div>
 
 			<div class="VideosResults">
-				<div class="results results-youtube hidden">
+				<div class="results results-youtube cvhidden">
 					<h6>Youtube <a href="#" class="ClearVideoSearch"><?=lang('cv:clear_search')?></a></h6>
 					<p class="LoadingVideos"><?=lang('cv:searching_videos')?></p>
 					<div class="inner"></div>
 				</div>
-				<div class="results results-vimeo hidden">
+				<div class="results results-vimeo cvhidden">
 					<h6>Vimeo <a href="#" class="ClearVideoSearch"><?=lang('cv:clear_search')?></a></h6>
 					<p class="LoadingVideos"><?=lang('cv:searching_videos')?></p>
 					<div class="inner"></div>
