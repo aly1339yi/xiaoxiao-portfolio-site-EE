@@ -2,7 +2,7 @@
 <div class="commercial-works-wrapper">
     <div class="container-fluid">
         <div class="row">
-            {exp:channel:entries channel="commercial_works"}
+            {exp:low_reorder:entries set="commercial_works" disable="member_data|category_fields"}
             <div class="col-sm-6 col-md-4 col">
                 <a href="/commercial-works/work-display/{url_title}">
                 <figure class="work-item">
@@ -19,7 +19,7 @@
                 </figure>
                 </a>
             </div>
-            {/exp:channel:entries}
+            {/exp:low_reorder:entries}
         </div>
     </div>
 </div>

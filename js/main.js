@@ -4,4 +4,10 @@ $( document ).ready(function() {
 		$('body').css('opacity', '1');
 	});
 	
+	
+	
+	$('#scene').parallax();	
+	
+	
+	
 });
