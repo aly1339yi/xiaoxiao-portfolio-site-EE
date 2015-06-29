@@ -4,9 +4,9 @@ $active_group = 'expressionengine';
 $active_record = TRUE;
 
 $db['expressionengine']['hostname'] = 'localhost';
-$db['expressionengine']['username'] = 'aly1339';
-$db['expressionengine']['password'] = '123qweASD';
-$db['expressionengine']['database'] = 'xiaoxiao';
+$db['expressionengine']['username'] = 'root';
+$db['expressionengine']['password'] = 'yilu891017556';
+$db['expressionengine']['database'] = 'soupsmallsmall.com';
 $db['expressionengine']['dbdriver'] = 'mysql';
 $db['expressionengine']['pconnect'] = FALSE;
 $db['expressionengine']['dbprefix'] = 'exp_';

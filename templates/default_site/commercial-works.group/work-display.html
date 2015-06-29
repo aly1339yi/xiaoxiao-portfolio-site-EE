@@ -1,11 +1,55 @@
-{layout="inc/.layout"}
 
-{exp:channel:entries channel="commercial_works"}
-    <h1>{title}</h1>
+
+	{exp:channel:entries channel="commercial_works" limit="1"}
+
+	<div id="ajax-target" class="commercial-work-item">
+		<div class="close-icon"></div>
+		<div class="video-wrapper">
+		    {exp:channel_videos:videos entry_id="{entry_id}" embed_width="16" embed_height="9" }
+		        {video:embed_code_hd}
+		    {/exp:channel_videos:videos}		
+		</div>
+	 
+		<div class="detail-wrapper clearfix">
+			<div class="title col">{name}</div>
+			<div class="type col">
+				<div class="col-title">type</div>
+				<div class="col-content">
+					{type-list}
+					<div>{type}</div>
+					{/type-list}					
+				</div>
+			</div>
+			<div class="client col">
+				<div class="col-title">client</div>
+				<div class="col-content">
+					<div>{client}</div>					
+				</div>			
+			</div>
+			{if agency}
+			<div class="agency col">
+				<div class="col-title">agency</div>
+				<div class="col-content">
+					<div>{agency}</div>					
+				</div>
+			</div>
+			{/if}
+
+			<div class="role col">
+				<div class="col-title">role</div>
+				<div class="col-content">
+					{role-list}
+					<div>{role}</div>
+					{/role-list}					
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	{/exp:channel:entries}
+
+
+
+
  
-    {exp:channel_videos:videos entry_id="{entry_id}"}
-        <h3>{video:title}</h3>
-        {video:embed_code_hd}
-    {/exp:channel_videos:videos}
- 
-{/exp:channel:entries}
