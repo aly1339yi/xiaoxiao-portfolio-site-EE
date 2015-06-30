@@ -1,11 +1,9 @@
 $( document ).ready(function() {
-		
-	$('body').imagesLoaded( function() {
-		$('body').css('opacity', '1');
-	});
-					
-	$('#scene').parallax();	
-	$('.fitvids-wrapper').fitVids();
+
+
+/*
+################################# FUNCTION BLOCK #########################################
+*/
 
 	function VerticalAlignTitleCol(){
 		
@@ -16,13 +14,53 @@ $( document ).ready(function() {
 		});
 	}
 
+	function centerAlignFeather(){
+		
+		var featherMarginLeftValue = $('.feather-wrapper').width()/(-2);
+
+		$('.feather-wrapper').css('margin-left',featherMarginLeftValue);			
+	}
+
+
+
+/*
+################################# END OF FUNCTION BLOCK ###################################
+*/
+
+
+/*
+################################# WINDOW RESIZE #########################################
+*/
+
+	$(window).on('resize',function(event) {
+
+		centerAlignFeather();
+	});
+
+/*
+################################# END OF WINDOW RESIZE ###################################
+*/
+
+
+		
+	$('body').imagesLoaded( function() {
+		$('body').css('opacity', '1');
+	});
+					
+	$('#scene').parallax();
 	
-			
+	$('.fitvids-wrapper').fitVids();
+	
+	centerAlignFeather();	
+
+
+
+		
 	$('.commercial-works-wrapper').on('click', '.work-item-thumbnail.ajax-trigger', function(event) {
 		event.preventDefault();
 
 		var ajaxURL = $(this).data('link');
-
+		
 		
 
 		$( '#ajax-wrapper' ).load( ajaxURL, function() {
@@ -32,9 +70,9 @@ $( document ).ready(function() {
 			$( '#ajax-wrapper' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
 
 				VerticalAlignTitleCol();
-
+				//history.pushState({}, '', ajaxURL);
 				$('.commercial-work-item .detail-wrapper').addClass('slide-up');
-
+				
 			});
 
 		});		
