@@ -1,15 +1,15 @@
 <div id="ajax-target" class="commercial-work-item">
 	
-	<div class="close-icon"></div>
+	
 	
 	{exp:low_reorder:prev_entry set="commercial_works" url_title="{segment_3}"}
-		<div class="prev-entry-link relative-entry-link" data-link="/commercial-works/work-display/{url_title}"></div>
+		<div class="prev-entry-link relative-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
 	  {if no_results}{/if}
 	{/exp:low_reorder:prev_entry}
 	
 	
 	{exp:low_reorder:next_entry set="commercial_works" url_title="{segment_3}"}
-		<div class="next-entry-link relative-entry-link" data-link="/commercial-works/work-display/{url_title}"></div>
+		<div class="next-entry-link relative-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
 	  {if no_results}{/if}
 	{/exp:low_reorder:next_entry}
 	
