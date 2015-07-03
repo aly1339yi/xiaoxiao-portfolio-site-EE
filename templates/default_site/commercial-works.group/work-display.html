@@ -2,28 +2,36 @@
 	
 	
 	
-	{exp:low_reorder:prev_entry set="commercial_works" url_title="{segment_3}"}
-		<div class="prev-entry-link relative-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
-	  {if no_results}{/if}
-	{/exp:low_reorder:prev_entry}
-	
-	
-	{exp:low_reorder:next_entry set="commercial_works" url_title="{segment_3}"}
-		<div class="next-entry-link relative-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
-	  {if no_results}{/if}
-	{/exp:low_reorder:next_entry}
-	
-	
-	
-	
-	
-	{exp:channel:entries channel="commercial_works" limit="1"}	
-	<div class="video-wrapper">
-	    {exp:channel_videos:videos entry_id="{entry_id}" embed_width="16" embed_height="9" }
-	        {video:embed_code_hd}
-	    {/exp:channel_videos:videos}		
+	<div class="video-slider-wrapper">
+		<div class="video-wrapper">
+			{exp:channel:entries channel="commercial_works" limit="1"}
+			    {exp:channel_videos:videos entry_id="{entry_id}" embed_width="16" embed_height="9" }
+			        {video:embed_code_hd}
+			    {/exp:channel_videos:videos}
+		    {/exp:channel:entries}			
+		</div>
+		<div class="relative-entry-link-wrapper prev-entry-link-wrapper">
+			{exp:low_reorder:prev_entry set="commercial_works" url_title="{segment_3}"}
+				<div class="relative-entry-link prev-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
+			  {if no_results}{/if}
+			{/exp:low_reorder:prev_entry}
+			
+		</div>
+		<div class="relative-entry-link-wrapper next-entry-link-wrapper">			
+			{exp:low_reorder:next_entry set="commercial_works" url_title="{segment_3}"}
+				<div class="relative-entry-link next-entry-link commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}"></div>
+			  {if no_results}{/if}
+			{/exp:low_reorder:next_entry}			
+		</div>
+	    
+	    
+	    		
 	</div>
- 
+	
+	
+	
+	
+	{exp:channel:entries channel="commercial_works" limit="1"}
 	<div class="detail-wrapper clearfix">
 		<div class="title col">{name}</div>
 		<div class="type col">
@@ -58,7 +66,7 @@
 			</div>
 		</div>
 	</div>
-	{/exp:channel:entries}
+	{/exp:channel:entries}	
 
 </div>
 
