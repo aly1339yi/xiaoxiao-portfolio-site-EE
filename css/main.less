@@ -338,18 +338,20 @@ html.no-touch .commercial-works-wrapper{
 	
 	.close-icon{
 		position: absolute;
-		top: 30px;
-		right: 50px;
-		width: 30px;
-		height: 30px;
-		border: 1px solid black;
-    	-moz-border-radius: 30px;
-    	-webkit-border-radius: 30px;
-    	border-radius: 50%;
-		background: url(/css/img/basic_icon_slim/cross.png) no-repeat center center;
-		background-size: contain;
+		top: 0;
+		right: 0;
+		z-index: 1031;
+		width: 100px;
+		height: 100px;
+		line-height: 115px;
+		font-size: 40px;
+		color:#ccc;
+		text-align: center;
+		.transition-slow;
 		&:hover{
 			cursor: pointer;
+			color: #666;
+			.scale-small;
 			
 		}		
 	}
@@ -387,14 +389,17 @@ html.no-touch .commercial-works-wrapper{
 			top: 0;
 			bottom: 0;
 			width: 100px;
-			border: 2px solid green;
-		}
-		.prev-entry-link-wrapper{
+			overflow: hidden;
+			//border: 2px solid green;
+			&.prev-entry-link-wrapper{
 			left: 0;					
+			}
+			&.next-entry-link-wrapper{
+				right: 0;
+			}
 		}
-		.next-entry-link-wrapper{
-			right: 0;
-		}
+
+
 
 			
 		.relative-entry-link{
@@ -403,19 +408,26 @@ html.no-touch .commercial-works-wrapper{
 			margin-top: -50px;	
 			width: 100px;
 			height: 100px;
-			border: 2px solid red;
+			line-height: 115px;
+			font-size: 40px;
+			color:#ccc;
+			text-align: center;
 			.transition-slow;
 			&:hover{
 				cursor: pointer;
 			}
+			
+			&.prev-entry-link{
+				left: 0;
+	
+			}
+			&.next-entry-link{
+				right: 0;			
+				
+			}			
+			
 		}		
-		.prev-entry-link{
-			left: 0;
-		}
-		.next-entry-link{
-			right: 0;
-		
-		}			
+			
 	
 		.prev-entry-link-wrapper.slide-out .prev-entry-link{
 			-moz-transform: translateX(-100%);
@@ -427,14 +439,19 @@ html.no-touch .commercial-works-wrapper{
 			-moz-transform: translateX(100%);
 			-o-transform: translateX(100%);
 			-webkit-transform: translateX(100%);
-			transform: translateX(100%);		
+			transform: translateX(100%);
+					
 		}	
 	
 		.relative-entry-link-wrapper:hover .relative-entry-link{
 			-moz-transform: translateX(0);
 			-o-transform: translateX(0);
 			-webkit-transform: translateX(0);
-			transform: translateX(0);			
+			transform: translateX(0);
+			&:hover{
+				color:#666;
+				.scale-small;
+			}		
 		}
 	
 				

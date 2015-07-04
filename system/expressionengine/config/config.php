@@ -13,9 +13,9 @@
 
 $config['app_version'] = '292';
 $config['license_contact'] = 'yilu891017@me.com';
-$config['license_number'] = '4053-9138-9163-7133';
+$config['license_number'] = '0000-0000-0000-0000';
 $config['debug'] = '1';
-$config['cp_url'] = 'http://xiaoxiao.yi-lu.me/admin.php';
+$config['cp_url'] = 'http://soupsmallsmall.com/admin.php';
 $config['doc_url'] = 'http://ellislab.com/expressionengine/user-guide/';
 $config['is_system_on'] = 'y';
 $config['allow_extensions'] = 'y';
