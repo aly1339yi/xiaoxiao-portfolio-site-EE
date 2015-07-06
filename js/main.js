@@ -45,7 +45,10 @@ $( document ).ready(function() {
 		
 	$('body').imagesLoaded( function() {
 		$('body').css('opacity', '1');
+		$('body.homepage .main-navbar').delay(1000).addClass('slide-in');
 	});
+	
+	
 					
 	$('#scene').parallax();
 	
