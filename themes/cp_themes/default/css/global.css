@@ -4169,7 +4169,7 @@ div.pageContents,
 	color: #ECF1F4;
 	font-size: 12px;
 	padding: 10px;
-
+	display: none;
 }
 
 	.nanner a:link,

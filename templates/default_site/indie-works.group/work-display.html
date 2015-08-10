@@ -1,0 +1,97 @@
+<div id="ajax-target" class="indie-work-item">
+	
+	
+	
+	<div class="media-wrapper">
+		
+        <div class="display-table">
+            <div class="display-table-cell">
+
+				{exp:channel:entries channel="indie_works" limit="1"}
+
+				{if iw_video}
+				
+				<div class="video-wrapper">
+
+				    {exp:channel_videos:videos entry_id="{entry_id}" embed_width="16" embed_height="9" }
+				        {video:embed_code_hd}
+				    {/exp:channel_videos:videos}
+				    		
+				</div>
+				
+				{if:elseif {iw_gallery:total_rows} > 1}
+				
+					<div class="carousel-wrapper">
+						
+						<div class="owl-carousel">
+							
+							{iw_gallery}
+						    <div class="item">
+				                {gallery_image}
+				                <img class="img-fullwidth" src="{url}" alt="{alt_text}">
+				                {/gallery_image}   
+						    </div>
+							{/iw_gallery}
+									
+						</div>
+					</div>					
+				{if:else}
+				
+					<div class="image-wrapper">
+						{iw_gallery}
+					    <div class="image">
+			                {gallery_image}
+			                <img class="img-fullheight" src="{url}" alt="{alt_text}">
+			                {/gallery_image}   
+					    </div>
+						{/iw_gallery}
+					</div>
+				
+			
+				{/if}
+
+			
+				
+
+
+
+
+
+				
+					
+				{/exp:channel:entries}	
+
+
+            </div>
+        </div>
+		
+
+	
+	
+		
+		
+		
+		<div class="relative-entry-link-wrapper prev-entry-link-wrapper">
+			{exp:low_reorder:prev_entry set="indie_works" url_title="{segment_3}" loop="yes"}
+				<div class="elegant-icon relative-entry-link prev-entry-link commercial-ajax-trigger" data-link="/indie-works/work-display/{url_title}">&#x23;</div>
+			{/exp:low_reorder:prev_entry}
+			
+		</div>
+		
+		
+		<div class="relative-entry-link-wrapper next-entry-link-wrapper">			
+			{exp:low_reorder:next_entry set="indie_works" url_title="{segment_3}" loop="yes"}
+				<div class="elegant-icon relative-entry-link next-entry-link commercial-ajax-trigger" data-link="/indie-works/work-display/{url_title}">&#x24;</div>
+			{/exp:low_reorder:next_entry}			
+		</div>
+	    
+	    
+	    		
+	</div>
+	
+	
+	
+
+</div>
+
+ 

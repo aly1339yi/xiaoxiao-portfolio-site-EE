@@ -49,6 +49,7 @@
          url('/css/fonts/gillsansstd-light.svg#GillSansStdLight') format('svg');
 }
 
+/*
 @font-face {
 	font-family: 'Simple-Line-Icons';
 	src:url('/css/fonts/Simple-Line-Icons.eot');
@@ -59,7 +60,17 @@
 	font-weight: normal;
 	font-style: normal;
 }
+*/
 
-
+@font-face {
+	font-family: 'ElegantIcons';
+	src:url('/css/fonts/ElegantIcons.eot');
+	src:url('/css/fonts/ElegantIcons.eot?#iefix') format('embedded-opentype'),
+		url('/css/fonts/ElegantIcons.woff') format('woff'),
+		url('/css/fonts/ElegantIcons.ttf') format('truetype'),
+		url('/css/fonts/ElegantIcons.svg#ElegantIcons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
 
 

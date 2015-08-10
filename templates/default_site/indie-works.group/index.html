@@ -1,0 +1,43 @@
+{layout="inc/.layout"}
+<div class="indie-works-wrapper">
+    <div class="container-fluid">
+        <div class="row isotope-wrapper">
+	        
+            {exp:low_reorder:entries set="indie_works" disable="member_data"}
+                 
+            <div class="col-sm-6 col-md-4 col isotope-item {categories backspace="1"}{category_url_title} {/categories}">
+         
+                <figure class="work-item-thumbnail indie-ajax-trigger" data-link="/indie-works/work-display/{url_title}">
+                	<div class="img-wrapper">
+		                {iw_thumbnail}
+		                <img class="img-fullwidth" src="{url}" alt="{alt_text}">
+		                {/iw_thumbnail}               		
+                	</div>
+					<figcaption class="copy-wrapper" style="background-color: #{iw_caption_bkg_color}; color: #{iw_caption_font_color};">
+						<h3>{iw_name}</h3>
+						<h4>{primary_categories}{primary_category_name}{/primary_categories}</h4>
+					</figcaption>
+                </figure> 
+                
+            </div>
+            {/exp:low_reorder:entries}
+            
+        </div>
+    </div>
+</div>
+
+<div class="indie-works-filter-wrapper slide-up">
+    <ul>
+	    <li data-filter="">all</li>
+		{exp:channel:categories channel="indie_works" style="linear"}
+		    <li data-filter=".{category_url_title}">{category_name}</li>
+		{/exp:channel:categories}
+
+    </ul>
+</div>
+
+
+<div class="work-item-container">
+	<div class="close-icon elegant-icon">&#x4d;</div>
+	<div id="ajax-wrapper" class="fitvids-wrapper"></div>
+</div>

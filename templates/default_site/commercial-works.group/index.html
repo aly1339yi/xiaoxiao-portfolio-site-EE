@@ -6,18 +6,18 @@
             <div class="col-sm-6 col-md-4 col">           
                 <figure class="work-item-thumbnail commercial-ajax-trigger" data-link="/commercial-works/work-display/{url_title}">
                 	<div class="img-wrapper">
-		                {thumbnail}
+		                {cw_thumbnail}
 		                <img class="img-fullwidth" src="{url}" alt="{alt_text}">
-		                {/thumbnail}               		
+		                {/cw_thumbnail}               		
                 	</div>
 
-	                <div class="meta">
+	                <figcaption class="meta">
 	                    <div class="display-table">
 	                        <div class="display-table-cell">
-	                            <h3>{title}</h3>
+	                            <h3>{cw_name}</h3>
 	                        </div>
 	                    </div>
-	                </div>
+	                </figcaption>
                 </figure> 
             </div>
             {/exp:low_reorder:entries}
@@ -25,7 +25,7 @@
     </div>
 </div>
 
-<div class="commercial-work-item-container">
-	<div class="close-icon" data-icon="&#xe082;"></div>
+<div class="work-item-container">
+	<div class="close-icon elegant-icon">&#x4d;</div>
 	<div id="ajax-wrapper" class="fitvids-wrapper"></div>
 </div>

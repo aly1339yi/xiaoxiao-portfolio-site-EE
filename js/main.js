@@ -17,15 +17,9 @@ $( document ).ready(function() {
 	function centerAlignFeather(){
 		
 		var featherMarginLeftValue = $('.feather-wrapper').width()/(-2);
-
+	
 		$('.feather-wrapper').css('margin-left',featherMarginLeftValue);			
 	}
-
-
-	
-/*
-################################# END OF FUNCTION BLOCK ###################################
-*/
 
 
 /*
@@ -33,31 +27,83 @@ $( document ).ready(function() {
 */
 
 	$(window).on('resize',function(event) {
-
+	
 		centerAlignFeather();
 	});
 
 /*
-################################# END OF WINDOW RESIZE ###################################
+################################# GENERAL ###################################
 */
 
 
-		
-	$('body').imagesLoaded( function() {
-		$('body').css('opacity', '1');
-		$('body.homepage .main-navbar').delay(1000).addClass('slide-in');
+
+	$('.fitvids-wrapper').fitVids();
+	
+	
+	$(document).on('click', '.anchor-span', function() {
+		if($(this).attr('data-link')){
+			window.location= $(this).data('link');
+		} 
 	});
 	
+		
+	$('body').waitForImages( function() {
+		
+		
+		$( 'body' ).animate({opacity: 1}, 800, function() {
+			// Animation complete.
+			if($('body').hasClass('homepage')){
+				setTimeout(function(){	
+					$('.main-navbar').addClass('slide-in');
+					$('.logo span').textillate();			
+				}, 800);
+			}
+			
+			if($('body').hasClass('indie-works')){
+				setTimeout(function(){	
+					$('.indie-works-filter-wrapper ul').addClass('slide-up');			
+				}, 2000);
+			}	
+			
+			
+			
+			
+		});		
+			
+	});
 	
+
+/*
+################################# HOMEPAGE ###################################
+*/
+
+	
+
 					
 	$('#scene').parallax();
 	
-	$('.fitvids-wrapper').fitVids();
-	
+
 	centerAlignFeather();	
 
 
 
+/*
+################################# REEL ###################################
+*/
+
+
+
+
+
+
+
+
+/*
+################################# COMMERCIAL WORKS ###################################
+*/
+
+
+	
 		
 	$(document).on('click', '.commercial-ajax-trigger', function() {
 		
@@ -70,14 +116,19 @@ $( document ).ready(function() {
 
 			$('.fitvids-wrapper').fitVids();
 
-			$( '.commercial-work-item-container' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
+			$( '.work-item-container' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
 
-				
+				$('.commercial-work-item').mousewheelStopPropagation();
+
 				VerticalAlignTitleCol();
 				//history.pushState({}, '', ajaxURL);
-				$('.commercial-work-item .detail-wrapper').addClass('slide-up');
+				$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
 				
-				$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');
+				setTimeout(function(){	
+					$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+				}, 1500);
+				
+				
 			});
 
 		});		
@@ -85,32 +136,68 @@ $( document ).ready(function() {
 	
 	
 
-	$(document).on('click', '.commercial-work-item-container .close-icon', function() {
+	$(document).on('click', '.work-item-container .close-icon', function() {
 		
 		
-		$( '.commercial-work-item-container' ).fadeOut(0, function() {
+		$( '.work-item-container' ).fadeOut(0, function() {
 			$( '#ajax-wrapper' ).empty();
 		});
 		
 	});	
 	
 		
-	
 /*
-	$(document).on('mouseover', '.relative-entry-link-wrapper', function() {
+################################# INDIE WORKS ###################################
+*/
+	
+
+	$('.isotope-wrapper').waitForImages( function() {	
+		$('.isotope-wrapper').isotope({itemSelector: '.isotope-item'}).isotope();
+	});
+	
+	$('.indie-works-filter-wrapper').on( 'click', 'li', function() {
+	  var filterValue = $(this).attr('data-filter');
+	  $('.isotope-wrapper').isotope({ filter: filterValue });
+	});
+
+
+
+
+
+	$(document).on('click', '.indie-ajax-trigger', function() {
 		
-		$(this).removeClass('slide-out');
 		
-	});	
-*/	
-	
-	
-	
-	
-	
-	
-	
-	
+		
+		var ajaxURL = $(this).data('link');
+		
+		
+		$( '#ajax-wrapper' ).load( ajaxURL, function() {
+
+			$('.fitvids-wrapper').fitVids();
+
+			$( '.work-item-container' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
+
+				$('.commercial-work-item').mousewheelStopPropagation();
+
+/*
+				VerticalAlignTitleCol();
+
+				$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
+				
+				setTimeout(function(){	
+					$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+				}, 1500);
+*/
+				
+				
+			});
+
+		});		
+	});
+
+
+
+
 
 
 
