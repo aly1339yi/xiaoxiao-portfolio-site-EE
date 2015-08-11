@@ -16,13 +16,14 @@ $config['license_contact'] = 'yilu891017@me.com';
 $config['license_number'] = '0000-0000-0000-0000';
 $config['debug'] = '1';
 $config['cp_url'] = 'http://soupsmallsmall.com/admin.php';
+$config['cp_theme'] = 'nerdery';
 $config['doc_url'] = 'http://ellislab.com/expressionengine/user-guide/';
 $config['is_system_on'] = 'y';
 $config['allow_extensions'] = 'y';
 $config['cookie_prefix'] = '';
 $config['cookie_httponly'] = 'y';
 
-$config['index_page'] = '';
+$config['index_page'] = 'xiaoxiao';
 
 // END EE config items
 

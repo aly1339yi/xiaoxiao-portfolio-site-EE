@@ -113,23 +113,30 @@ $( document ).ready(function() {
 		
 		
 		$( '#ajax-wrapper' ).load( ajaxURL, function() {
+			
+			$('.commercial-work-item').mousewheelStopPropagation();
+			
+			$('.fitvids-wrapper').fitVids();			
 
-			$('.fitvids-wrapper').fitVids();
-
-			$( '.work-item-container' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
-
-				$('.commercial-work-item').mousewheelStopPropagation();
-
-				VerticalAlignTitleCol();
-				//history.pushState({}, '', ajaxURL);
-				$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
+			$( '.work-item-container' ).css('display','block');
 				
-				setTimeout(function(){	
-					$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
-				}, 1500);
+			VerticalAlignTitleCol();
+			
+			setTimeout(function(){	
 				
-				
-			});
+				$( '.work-item-container' ).animate({opacity: 1}, 400, function() {
+					
+					$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
+					
+					setTimeout(function(){	
+						//$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+					}, 1000);			
+					
+					
+				});					
+
+			}, 400);
+
 
 		});		
 	});
@@ -139,10 +146,11 @@ $( document ).ready(function() {
 	$(document).on('click', '.work-item-container .close-icon', function() {
 		
 		
-		$( '.work-item-container' ).fadeOut(0, function() {
-			$( '#ajax-wrapper' ).empty();
-		});
-		
+		$( '.work-item-container' ).css({
+			'display':'none',
+			'opacity':'0'
+		});		
+		$( '#ajax-wrapper' ).empty();
 	});	
 	
 		
@@ -157,7 +165,7 @@ $( document ).ready(function() {
 	
 	$('.indie-works-filter-wrapper').on( 'click', 'li', function() {
 	  var filterValue = $(this).attr('data-filter');
-	  $('.isotope-wrapper').isotope({ filter: filterValue });
+	  $('.isotope-wrapper').isotope({ filter: filterValue }).isotope();
 	});
 
 
@@ -166,31 +174,84 @@ $( document ).ready(function() {
 
 	$(document).on('click', '.indie-ajax-trigger', function() {
 		
-		
-		
 		var ajaxURL = $(this).data('link');
 		
-		
+		$('.work-item-container .close-icon').css('color','#f4f4f4');
+			
 		$( '#ajax-wrapper' ).load( ajaxURL, function() {
+			
+			$('.relative-entry-link').css('color','#f4f4f4');
+			
+			$('.indie-work-item').mousewheelStopPropagation();
+			
+			$( '.work-item-container' ).css('display','block');
 
-			$('.fitvids-wrapper').fitVids();
+			
+			if($('.video-wrapper').length){
+				
+				$('.fitvids-wrapper').fitVids();
+				
+			}
+			else if($('.carousel-wrapper').length){
+						
+				$('.owl-carousel').owlCarousel({
+					
+					itemsCustom: [[0, 2], [1200, 3], [1800, 4]],
+		
+					afterInit: function(){
+						$('.owl-carousel').waitForImages( function() {
+							var paddingTop = $(window).height()/2-$('.owl-wrapper').height()/2;
+							$('.carousel-wrapper').css('padding-top', paddingTop+'px');
+						});
+						
+				    },
+				    afterUpdate : function(){
+						var paddingTop = $(window).height()/2-$('.owl-wrapper').height()/2;
+						$('.carousel-wrapper').css('padding-top', paddingTop+'px');						
+				    }					
+					
+				})
+					
+			}
 
-			$( '.work-item-container' ).delay(400).fadeIn(400,'easeInOutExpo',function(){
+			
+			setTimeout(function(){	
+				
+				$( '.work-item-container' ).animate({opacity: 1}, 300, function() {
+					
+					//$('.indie-work-item .detail-wrapper').removeClass('slide-down');
+					
+					setTimeout(function(){	
+						$('.indie-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+					}, 1000);			
+					
+					
+				});					
 
-				$('.commercial-work-item').mousewheelStopPropagation();
+			}, 400);
+				
 
-/*
-				VerticalAlignTitleCol();
 
-				$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				$('.indie-work-item .detail-wrapper').removeClass('slide-down');
 				
 				setTimeout(function(){	
-					$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
-				}, 1500);
-*/
+					$('.indie-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+				}, 1000);
 				
-				
-			});
 
 		});		
 	});
