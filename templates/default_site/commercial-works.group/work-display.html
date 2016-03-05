@@ -39,7 +39,7 @@
 	
 	{exp:channel:entries channel="commercial_works" limit="1" disable="categories|member_data|pagination"}
 	<div class="detail-wrapper slide-down clearfix">
-		<div class="title col">{cw_name}</div>
+		<div class="title col">{cw_long_title}</div>
 		<div class="type col">
 			<div class="col-title">type</div>
 			<div class="col-content">
@@ -51,7 +51,9 @@
 		<div class="client col">
 			<div class="col-title">client</div>
 			<div class="col-content">
-				<div>{cw_client}</div>					
+				{cw_client_list}
+				<div>{cw_client}</div>
+				{/cw_client_list}					
 			</div>			
 		</div>
 		{if cw_agency}

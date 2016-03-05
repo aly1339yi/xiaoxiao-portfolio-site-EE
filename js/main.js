@@ -87,16 +87,6 @@ $( document ).ready(function() {
 
 
 
-/*
-################################# REEL ###################################
-*/
-
-
-
-
-
-
-
 
 /*
 ################################# COMMERCIAL WORKS ###################################
@@ -107,9 +97,21 @@ $( document ).ready(function() {
 		
 	$(document).on('click', '.commercial-ajax-trigger', function() {
 		
+
+		var $this = $(this);
 		
 		
-		var ajaxURL = $(this).data('link');
+		
+		
+		var ajaxURL = $this.data('link');
+	
+/*
+		$('.work-item-container').css({
+			
+		});
+*/
+		
+		
 		
 		
 		$( '#ajax-wrapper' ).load( ajaxURL, function() {
@@ -118,18 +120,21 @@ $( document ).ready(function() {
 			
 			$('.fitvids-wrapper').fitVids();			
 
-			$( '.work-item-container' ).css('display','block');
+			$('.work-item-container').css('display','block');
+			
+			
+			
 				
 			VerticalAlignTitleCol();
 			
 			setTimeout(function(){	
 				
-				$( '.work-item-container' ).animate({opacity: 1}, 400, function() {
+				$('.work-item-container').animate({opacity: 1}, 400, function() {
 					
 					$('.commercial-work-item .detail-wrapper').removeClass('slide-down');
 					
 					setTimeout(function(){	
-						//$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
+						$('.commercial-work-item .relative-entry-link-wrapper').addClass('slide-out');		
 					}, 1000);			
 					
 					
@@ -201,7 +206,11 @@ $( document ).ready(function() {
 					afterInit: function(){
 						$('.owl-carousel').waitForImages( function() {
 							var paddingTop = $(window).height()/2-$('.owl-wrapper').height()/2;
-							$('.carousel-wrapper').css('padding-top', paddingTop+'px');
+							$('.carousel-wrapper').css({
+								'padding-top': paddingTop+'px',
+								'opacity': '1'
+							});
+							
 						});
 						
 				    },
@@ -229,32 +238,26 @@ $( document ).ready(function() {
 				});					
 
 			}, 400);
-				
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-				$('.indie-work-item .detail-wrapper').removeClass('slide-down');
-				
-				setTimeout(function(){	
-					$('.indie-work-item .relative-entry-link-wrapper').addClass('slide-out');		
-				}, 1000);
-				
-
 		});		
 	});
+
+
+/*
+################################# REEL ###################################
+*/
+
+	$(document).on('click', '.breakdown-list-wrapper-trigger', function() {
+		$('.breakdown-list-wrapper').removeClass('slide-right');
+		
+	});
+
+	$(document).on('click', '.breakdown-list-close-icon-wrapper', function() {
+		
+		$('.breakdown-list-wrapper').addClass('slide-right');
+		
+	});
+
+
 
 
 

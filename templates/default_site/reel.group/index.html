@@ -1,0 +1,92 @@
+{layout="inc/.layout"}
+
+<div class="reel-wrapper">
+	
+	<div class="video-wrapper fitvids-wrapper">
+		
+		<div class="video">
+			{exp:channel:entries channel="reels" limit="1" disable="categories|member_data|pagination"}
+			    {exp:channel_videos:videos entry_id="{entry_id}" embed_width="16" embed_height="9" }
+			        {video:embed_code_hd}
+			    {/exp:channel_videos:videos}
+		    {/exp:channel:entries}				
+		</div>
+			
+		<div class="breakdown-list-wrapper-trigger elegant-icon">&#x68;</div>
+		
+	</div>
+	
+	
+	<div class="breakdown-list-wrapper slide-right clearfix">
+	
+		<div class="breakdown-list-icon-container">
+			<a href="javascript:void(0)" class="breakdown-list-close-icon-wrapper breakdown-list-icon-wrapper">
+				<span class="breakdown-list-icon elegant-icon">&#x51;</span>
+			</a>
+			<a href="javascript:void(0)" class="breakdown-list-download-icon-wrapper breakdown-list-icon-wrapper">
+				<span class="breakdown-list-icon elegant-icon">&#xe0e8;</span>
+			</a>
+
+		</div>
+		
+		<div class="breakdown-list">
+				
+
+			{exp:channel:entries channel="reels" limit="1" disable="categories|member_data|pagination"}
+
+			{reel_breakdown_list}
+
+				<div class="breakdown-list-item">
+					
+					<div class="image-wrapper">
+		                {bkd_thumbnail}
+		                <img class="img-fullwidth" src="{url}" alt="{alt_text}">
+		                {/bkd_thumbnail} 
+		                <div class="meta">
+					        <div class="display-table">
+					            <div class="display-table-cell">
+						            <div class="link-icon elegant-icon">
+						            	&#xe024;
+						            </div>	
+					           </div>		
+							</div>			                	
+		                </div>
+		                
+					</div>
+					
+					<div class="copy-wrapper">
+						<h4>{bkd_category}</h4>
+						<h3>{bkd_name}</h3>
+						
+						<div class="role">{bkd_role}</div>
+						<div class="software">{bkd_software}</div>
+					</div>
+					
+				</div>
+
+
+
+			{/reel_breakdown_list}
+
+		    {/exp:channel:entries}	
+
+		</div>
+		
+		
+
+		
+		
+		
+		
+	</div>
+
+</div>
+
+
+
+
+	
+<div class="work-item-container">
+	<div class="close-icon elegant-icon">&#x4d;</div>
+	<div id="ajax-wrapper" class="fitvids-wrapper"></div>
+</div>
